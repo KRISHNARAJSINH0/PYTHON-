@@ -1,0 +1,572 @@
++*In[2]:*+
+[source, ipython3]
+----
+x = tuple("hello")
+print(x)
+----
+
+
++*Out[2]:*+
+----
+('h', 'e', 'l', 'l', 'o')
+----
+
+
++*In[10]:*+
+[source, ipython3]
+----
+x = (1,3,"my word",-1,23,45,-1)
+print(x[1])
+print(x[2])
+----
+
+
++*Out[10]:*+
+----
+3
+my word
+----
+
+
++*In[11]:*+
+[source, ipython3]
+----
+names = ('Vishnu', 'Anupama', 'Lakshmi', 'Bheeshma') 
+print(names) 
+lst= [input('Enter a new name:')] 
+new = tuple(lst) 
+pos = int(input('Enter position no:')) 
+names1 = names[0:pos-1] 
+names1 = names1+new 
+print(names1)
+names = names1+names[pos-1:] 
+print(names)
+----
+
+
++*Out[11]:*+
+----
+('Vishnu', 'Anupama', 'Lakshmi', 'Bheeshma')
+
+Enter a new name: 3
+Enter position no: 3
+
+('Vishnu', 'Anupama', '3')
+('Vishnu', 'Anupama', '3', 'Lakshmi', 'Bheeshma')
+----
+
+
++*In[13]:*+
+[source, ipython3]
+----
+s1='Box' 
+s2='Boy' 
+if s1<s2: 
+    print('s1 less than s2') 
+else: 
+    print('s1 greater than or equal to s2')
+----
+
+
++*Out[13]:*+
+----
+s1 less than s2
+----
+
+
++*In[18]:*+
+[source, ipython3]
+----
+str1 = input('Enter main string:') 
+sub = input('Enter sub string:') 
+n = str1.find(sub, 0, len(str1)) 
+if n == -1: 
+    print('Sub string not found') 
+else: 
+    print('Sub string found at position:', n+1)
+----
+
+
++*Out[18]:*+
+----
+Enter main string: this is code 
+Enter sub string: code
+
+Sub string found at position: 9
+----
+
+
++*In[21]:*+
+[source, ipython3]
+----
+s1 = "one"
+s2 = "two"
+print(id(s1))
+print(id(s2))
+s1 == s2
+
+----
+
+
++*Out[21]:*+
+----
+1641131507600
+1641190827728
+False----
+
+
++*In[23]:*+
+[source, ipython3]
+----
+x = "one,two,three,four"
+str1 =x.split(",")
+print(str1)
+----
+
+
++*Out[23]:*+
+----
+['one', 'two', 'three', 'four']
+----
+
+
++*In[33]:*+
+[source, ipython3]
+----
+x ="1,2,3 4 5 6 7"
+print((x.split(",")))
+----
+
+
++*Out[33]:*+
+----
+['1', '2', '3 4 5 6 7']
+----
+
+
++*In[48]:*+
+[source, ipython3]
+----
+str = ('one', 'two', 'three') 
+print(type(str))
+str1 = "_".join(str) 
+print(str1)
+type(str1)
+----
+
+
++*Out[48]:*+
+----
+<class 'tuple'>
+one_two_three
+str----
+
+
++*In[31]:*+
+[source, ipython3]
+----
+d = {'Name': 'Chandra', 'Id': 200, 'Salary': 9080.50}
+print(d["Id"])
+a = d.items()
+b = d.values()
+c = d.keys()
+print(a)
+print(b)
+print(c)
+s = {}
+s.update({"name":"kano"})
+print(s)
+----
+
+
++*Out[31]:*+
+----
+200
+dict_items([('Name', 'Chandra'), ('Id', 200), ('Salary', 9080.5)])
+dict_values(['Chandra', 200, 9080.5])
+dict_keys(['Name', 'Id', 'Salary'])
+{'name': 'kano'}
+----
+
+
++*In[85]:*+
+[source, ipython3]
+----
+d = {'Name': 'Chandra',"id":200}
+----
+
+
++*In[86]:*+
+[source, ipython3]
+----
+for x,y in d.items():
+    print("key is {} value is {}".format(x,y) )
+----
+
+
++*Out[86]:*+
+----
+key is Name value is Chandra
+key is id value is 200
+----
+
+
++*In[89]:*+
+[source, ipython3]
+----
+countries = ["USA", "India", "Germany", "France"] 
+cities = ['Washington', 'New Delhi', 'Berlin', 'Paris'] 
+ 
+z = zip(countries, cities) 
+print(z)
+d = dict(z) 
+print(d)
+print('{}--{}'.format(countries, cities)) 
+for k in d: 
+    print('{} -- {}'.format(k, d[k]))
+----
+
+
++*Out[89]:*+
+----
+<zip object at 0x0000017E1FA42080>
+{'USA': 'Washington', 'India': 'New Delhi', 'Germany': 'Berlin', 'France': 'Paris'}
+['USA', 'India', 'Germany', 'France']--['Washington', 'New Delhi', 'Berlin', 'Paris']
+USA -- Washington
+India -- New Delhi
+Germany -- Berlin
+France -- Paris
+----
+
+
++*In[94]:*+
+[source, ipython3]
+----
+ x = ['ab', 'cd']
+ for i in x:
+    i.upper()
+print(i)
+----
+
+
++*Out[94]:*+
+----
+cd
+----
+
+
++*In[100]:*+
+[source, ipython3]
+----
+my_tuple = [1, 2, 3, 4]
+my_tuple.append( (1,2,3) )
+print(my_tuple)
+----
+
+
++*Out[100]:*+
+----
+[1, 2, 3, 4, (1, 2, 3)]
+----
+
+
++*In[106]:*+
+[source, ipython3]
+----
+a=(4,3,2,1,0)
+b=slice(0,3)
+print(b)
+a[b]
+----
+
+
++*Out[106]:*+
+----
+slice(0, 3, None)
+(4, 3, 2)----
+
+
++*In[111]:*+
+[source, ipython3]
+----
+aTuple = ("Orange", (10, 20, 30), (5, 15, 25))
+val = aTuple[1][1]
+print(val)
+----
+
+
++*Out[111]:*+
+----
+20
+----
+
+
++*In[116]:*+
+[source, ipython3]
+----
+a="Hello Welcome to the Python"
+print(a.find("z"))
+print(a.index("z"))
+----
+
+
++*Out[116]:*+
+----
+-1
+
+
+    ---------------------------------------------------------------------------
+
+    ValueError                                Traceback (most recent call last)
+
+    Cell In[116], line 3
+          1 a="Hello Welcome to the Python"
+          2 print(a.find("z"))
+    ----> 3 print(a.index("z"))
+    
+
+    ValueError: substring not found
+
+----
+
+
++*In[120]:*+
+[source, ipython3]
+----
+S = "1234567890"
+S = S[-3] + S[2:4] + S[-2:-5] + S[ : -4:-2] + S[1: :2]
+print(S)
+print(S[::3])
+print(S[ : : 3] * 2)
+----
+
+
++*Out[120]:*+
+----
+8340824680
+8040
+80408040
+----
+
+
++*In[123]:*+
+[source, ipython3]
+----
+def check(s):
+    if len(s) <= 1:
+        return True
+    else:
+        return s[0] == s[-1] and check(s[1:-1])
+print(check('saippuakivkauppias'))
+----
+
+
++*Out[123]:*+
+----
+False
+----
+
+
++*In[143]:*+
+[source, ipython3]
+----
+s="Th*is is$ nothi&&ng b#ut excerc(is)e"
+change=s.maketrans("(",",","@#$%^&*_-)")
+d1 = s.translate(change)
+print(d1)
+----
+
+
++*Out[143]:*+
+----
+
+    ---------------------------------------------------------------------------
+
+    ValueError                                Traceback (most recent call last)
+
+    Cell In[143], line 2
+          1 s="Th*is is$ nothi&&ng b#ut excerc(is)e"
+    ----> 2 change=s.maketrans("(","@#$%^&*_-)")
+          3 d1 = s.translate(change)
+          4 print(d1)
+    
+
+    ValueError: the first two maketrans arguments must have equal length
+
+----
+
+
++*In[139]:*+
+[source, ipython3]
+----
+ s = "ball"
+ r = ""
+ for i in s:
+    r = i.upper()+r
+print(r)
+----
+
+
++*Out[139]:*+
+----
+LLAB
+----
+
+
++*In[141]:*+
+[source, ipython3]
+----
+ A=(5,3,2)
+ B=(5,3,2)
+ print(A+B)
+ print(len(A+B*3))
+----
+
+
++*Out[141]:*+
+----
+(5, 3, 2, 5, 3, 2)
+12
+----
+
+
++*In[1]:*+
+[source, ipython3]
+----
+a = {1, 2, 3, 4}
+b = {1, 2}
+print(a.issubset(b))
+print(b.issubset(a))
+print(a.issuperset(b))
+print(b.issuperset(a))
+----
+
+
++*Out[1]:*+
+----
+False
+True
+True
+False
+----
+
+
++*In[4]:*+
+[source, ipython3]
+----
+s = lambda x:x**x
+print("The Square of 4 is :",s(4))
+print("The Square of 5 is :",s(5))
+----
+
+
++*Out[4]:*+
+----
+The Square of 4 is : 256
+The Square of 5 is : 3125
+----
+
+
++*In[5]:*+
+[source, ipython3]
+----
+s = lambda x,y:x*y
+print("The Square of 4 is :",s(4,5))
+print("The Square of 5 is :",s(5,4))
+----
+
+
++*Out[5]:*+
+----
+The Square of 4 is : 20
+The Square of 5 is : 20
+----
+
+
++*In[8]:*+
+[source, ipython3]
+----
+l=[1,2,3,4,5]
+def doubleIt(x):
+    return 2*x
+l1=list(map(doubleIt,l))
+print(l1)
+----
+
+
++*Out[8]:*+
+----
+[2, 4, 6, 8, 10]
+----
+
+
++*In[29]:*+
+[source, ipython3]
+----
+l=[0,5,10,15,20,25,30]
+l1=list(map(lambda x:x, [ch for ch in l if ch %2==0]))
+print(l1)
+----
+
+
++*Out[29]:*+
+----
+[0, 10, 20, 30]
+----
+
+
++*In[25]:*+
+[source, ipython3]
+----
+l1 = list(map(lambda x: x, [n for n in l if n % 2 == 0]))
+print(l1)
+
+----
+
+
++*Out[25]:*+
+----
+[0, 10, 20, 30]
+----
+
+
++*In[34]:*+
+[source, ipython3]
+----
+def f(l):
+    l.append([1,2,3])
+    return
+l=[1,2,3] 
+print(l,end=" ")
+f(l)
+print(l)
+----
+
+
++*Out[34]:*+
+----
+[1, 2, 3] [1, 2, 3, [1, 2, 3]]
+----
+
+
++*In[42]:*+
+[source, ipython3]
+----
+ x = ['ab', 'cd'] 
+for i in x:
+    y = i.upper() 
+print(y)
+----
+
+
++*Out[42]:*+
+----
+CDABCD
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----
