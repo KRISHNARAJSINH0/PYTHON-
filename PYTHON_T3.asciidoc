@@ -1,0 +1,1220 @@
++*In[1]:*+
+[source, ipython3]
+----
+print("hello")
+----
+
+
++*Out[1]:*+
+----
+hello
+----
+
+
++*In[2]:*+
+[source, ipython3]
+----
+%%writefile abc.txt
+hello word this is my first file 
+----
+
+
++*Out[2]:*+
+----
+Writing abc.txt
+----
+
+
++*In[4]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    print(file.read())
+print(file.closed)
+----
+
+
++*Out[4]:*+
+----
+hello word this is my first file 
+
+True
+----
+
+== WAP to count words, characters and spaces in a text file
+
+
++*In[12]:*+
+[source, ipython3]
+----
+space = 0
+ch = 0
+with open("abc.txt") as file:
+    data = file.read()
+    for count in data:
+        ch+=1
+        if count == " ":
+            space+=1
+    word = len(data.split())
+    print("space in data :",space-1)
+    print("character in data :",ch-space)
+    print("word in data :",word)
+    print(data)
+----
+
+
++*Out[12]:*+
+----
+space in data : 6
+character in data : 27
+word in data : 7
+hello word this is my first file 
+
+----
+
+== WAP to create a list that contains the first word of every line in text file
+
+
++*In[18]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    e = []
+    data = file.readline().split()
+    for i in data:
+        e.append(i[0])
+    print(e)
+----
+
+
++*Out[18]:*+
+----
+['h', 'w', 't', 'i', 'm', 'f', 'f']
+----
+
+== WAP to add all the words that has character `e' to a list from a file
+
+
++*In[22]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    e = []
+    data = file.readline().split()
+    for ch in data:
+        if "e" in ch:
+            e.append(ch)
+    print(e)
+----
+
+
++*Out[22]:*+
+----
+['hello', 'file']
+----
+
+== WAP that reads data from a file and calculates the percentage of vowels and consonants in the file
+
+
++*In[30]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    vowel = 0
+    consonants = 0
+    data = file.read()
+    for i in data:
+        if i in "aeiouAEIOU":
+            vowel+=1
+        elif i.isalpha():
+            consonants +=1 
+        else:
+            pass
+print("no of vowel :",vowel)
+print("no of consonants :",consonants)
+print(f"% of vowel :{((vowel*100)/26):0.2f}")
+print(f"% of consonants :{((consonants*100)/26):0.2f}")
+print(data)
+----
+
+
++*Out[30]:*+
+----
+no of vowel : 8
+no of consonants : 18
+% of vowel :30.77
+% of consonants :69.23
+hello word this is my first file 
+
+----
+
+== WAP that reads a file line by line. Each line read from a file is copied to another file with line nos specified as prefix of line
+
+
++*In[31]:*+
+[source, ipython3]
+----
+%%writefile file1.txt
+this is file 1
+this is file 2
+this is file 3
+this is file 4
+this is file 5
+----
+
+
++*Out[31]:*+
+----
+Writing file1.txt
+----
+
+
++*In[33]:*+
+[source, ipython3]
+----
+%%writefile file2.txt
+hyy
+----
+
+
++*Out[33]:*+
+----
+Writing file2.txt
+----
+
+
++*In[40]:*+
+[source, ipython3]
+----
+file1 = open("file1.txt")
+file2 = open("file2.txt","w")
+for line in file1:
+    file2.writelines(line)
+file1.close()
+file2.close()
+f = open("file2.txt")
+print(f.read())
+f.close()
+print(f.closed)
+----
+
+
++*Out[40]:*+
+----
+this is file 1
+this is file 2
+this is file 3
+this is file 4
+this is file 5
+
+True
+----
+
+== WAP to create a dictionary having name, roll no and branch as keys. Copy the dictionary to a file database.txt
+
+
++*In[41]:*+
+[source, ipython3]
+----
+%%writefile database.txt
+hyy 
+----
+
+
++*Out[41]:*+
+----
+Writing database.txt
+----
+
+
++*In[48]:*+
+[source, ipython3]
+----
+d = {"Name":"parth","RollNo":"001","Marks":"23"}
+with open("database.txt","w") as file:
+    for key,value in d.items():
+        file.write(key+" : "+value+"\n")
+with open("database.txt") as f:
+    print(f.read(),end=" ")
+----
+
+
++*Out[48]:*+
+----
+Name : parth
+RollNo : 001
+Marks : 23
+ ----
+
+== WAP to copy all content of one file to another file in uppercase.
+
+
++*In[51]:*+
+[source, ipython3]
+----
+with open("file2.txt","w") as file2 ,open("file1.txt") as file1:    
+    for line in file1:
+        file2.writelines(line.upper())
+with open("file2.txt") as f:
+    print(f.read())
+----
+
+
++*Out[51]:*+
+----
+THIS IS FILE 1
+THIS IS FILE 2
+THIS IS FILE 3
+THIS IS FILE 4
+THIS IS FILE 5
+
+----
+
+== WAP to copy all content of one file to another file in reverse order.
+
+
++*In[52]:*+
+[source, ipython3]
+----
+with open("file2.txt","w") as file2 ,open("file1.txt") as file1:    
+    for line in file1:
+        file2.writelines(line[::-1])
+with open("file2.txt") as f:
+    print(f.read())
+----
+
+
++*Out[52]:*+
+----
+
+1 elif si siht
+2 elif si siht
+3 elif si siht
+4 elif si siht
+5 elif si siht
+----
+
+
++*In[71]:*+
+[source, ipython3]
+----
+# if both side have to move reversed 
+f1=open('file1.txt')
+data=f1.read()
+data1=data[::-1]
+print(data1)
+----
+
+
++*Out[71]:*+
+----
+
+5 elif si siht
+4 elif si siht
+3 elif si siht
+2 elif si siht
+1 elif si siht
+----
+
+
++*In[72]:*+
+[source, ipython3]
+----
+l = "hello this is my life" 
+y = list(l.split())
+l = []
+for ch in y:
+    x = ch[::-1]
+    l.append(x)
+print(l)
+----
+
+
++*Out[72]:*+
+----
+['olleh', 'siht', 'si', 'ym', 'efil']
+----
+
+
++*In[73]:*+
+[source, ipython3]
+----
+# this is extra  
+l = "hello this is my life"
+x = l.split()
+print(x)
+x.reverse()
+print(x)
+----
+
+
++*Out[73]:*+
+----
+['hello', 'this', 'is', 'my', 'life']
+['life', 'my', 'is', 'this', 'hello']
+----
+
+== WAP to read specific lines from a file.
+
+
++*In[81]:*+
+[source, ipython3]
+----
+with open("file1.txt") as f:
+    data = f.readlines()
+    print(data[2])
+    print(data[1])
+    print(data[0:2])
+    
+----
+
+
++*Out[81]:*+
+----
+this is file 3
+
+this is file 2
+
+['this is file 1\n', 'this is file 2\n']
+----
+
+== WAP to copy odd lines of one file to another.
+
+
++*In[88]:*+
+[source, ipython3]
+----
+with open("file1.txt") as file,open("file2.txt","w") as f:
+    data = file.readlines()
+    for line in range(len(data)): # len = 0.1.2.3.4
+        if line%2 == 0:
+            f.write(data[line])
+with open("file2.txt") as file1:
+    print(file1.read())
+----
+
+
++*Out[88]:*+
+----
+this is file 1
+this is file 3
+this is file 5
+
+----
+
+== WAP to find the longest word from a file.
+
+
++*In[100]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    l = []
+    data = file.read().split()
+    mx = len(max(data,key = len))
+    for word in data:
+        if len(word) == mx:
+            l.append(word)
+    print(l)
+----
+
+
++*Out[100]:*+
+----
+['hello', 'first']
+----
+
+== WAP to read the file and replace the letter `j' with `i'. The file is miswritten and has content as `Well thjs jsa word by jtself. You can strech thjs to be a sentence'.|
+
+
++*In[101]:*+
+[source, ipython3]
+----
+%%writefile xyz.txt
+Well thjs js a word by jtself. You can strech thjs to be a sentence
+----
+
+
++*Out[101]:*+
+----
+Writing xyz.txt
+----
+
+
++*In[105]:*+
+[source, ipython3]
+----
+with open("xyz.txt") as file:
+    data = file.read()
+    for ch in data:
+        if "j" in ch:
+            print("i",end="")
+        else:
+            print(ch,end= "")
+----
+
+
++*Out[105]:*+
+----
+Well this is a word by itself. You can strech this to be a sentence
+----
+
+== WAP such that your solution should promt for a file name and display the text file’s 25 lines at a time,pausing each time to ask the user to `press any key to continue or q to quit and exit'.
+
+
++*In[115]:*+
+[source, ipython3]
+----
+file = open(input("Enter file name in txt :"))
+x = int(input("How many lines you have to print :"))
+for index,value in enumerate(file,1):
+    print(index," : ",value)
+    if index%x == 0:
+        z = input("hit any button for continue,for quite Enter q :")
+        if z.lower() == "q":
+            break
+file.close()
+----
+
+
++*Out[115]:*+
+----
+Enter file name in txt : file1.txt
+How many lines you have to print : 3
+
+1  :  this is file 1
+
+2  :  this is file 2
+
+3  :  this is file 3
+
+
+hit any button for continue,for quite Enter q : q
+----
+
+== WAP to copy a python code from a text file to another file. The copied content should not print the comments present in the python code.
+
+
++*In[116]:*+
+[source, ipython3]
+----
+%%writefile abc.txt
+#This is line 1
+This is line 2
+This is line 3
+This is line #4
+This is #line 5
+----
+
+
++*Out[116]:*+
+----
+Overwriting abc.txt
+----
+
+
++*In[121]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file1:
+    t = []
+    data = file1.readlines()
+    for line in data:
+        t.append(line[:line.find("#")])
+with open("xyz.txt","w") as file2:
+    for word in t:
+        x = file2.writelines(word+"\n")
+with open("xyz.txt") as f:
+    print(f.read())
+----
+
+
++*Out[121]:*+
+----
+
+This is line 2
+This is line 3
+This is line 
+This is 
+
+----
+
+== WAP to compare two text files, if they are different, give the row and column numbers in the files where the first difference occurs
+
+
++*In[122]:*+
+[source, ipython3]
+----
+%%writefile abc.txt
+this is python file
+----
+
+
++*Out[122]:*+
+----
+Overwriting abc.txt
+----
+
+
++*In[123]:*+
+[source, ipython3]
+----
+%%writefile xyz.txt
+this is python flie
+----
+
+
++*Out[123]:*+
+----
+Overwriting xyz.txt
+----
+
+
++*In[125]:*+
+[source, ipython3]
+----
+with open("abc.txt") as f1,open("xyz.txt") as f2:
+    d1 = f1.readlines()
+    d2 = f2.readlines()
+    for index,value in enumerate(d1):
+        if value != d2[index]:
+            for n,v in enumerate(value):
+                if v != d2[index][n]:
+                    print(f"row :- {index+1} , column :- {n+1}")
+                    break
+            break
+----
+
+
++*Out[125]:*+
+----
+row :- 1 , column :- 17
+----
+
+
++*In[126]:*+
+[source, ipython3]
+----
+import math
+----
+
+
++*In[127]:*+
+[source, ipython3]
+----
+print(math.pi)
+----
+
+
++*Out[127]:*+
+----
+3.141592653589793
+----
+
+
++*In[149]:*+
+[source, ipython3]
+----
+%%writefile myfirst.py
+a = 100
+b = 200
+c = "hello"
+print("this is python")
+def add(x,y):
+    print("sum is ",x+y)
+----
+
+
++*Out[149]:*+
+----
+Overwriting myfirst.py
+----
+
+
++*In[150]:*+
+[source, ipython3]
+----
+import myfirst
+----
+
+
++*In[151]:*+
+[source, ipython3]
+----
+print(myfirst.a)
+print(myfirst.b)
+print(myfirst.c)
+----
+
+
++*Out[151]:*+
+----
+100
+200
+hello
+----
+
+
++*In[152]:*+
+[source, ipython3]
+----
+from myfirst import *
+----
+
+
++*In[156]:*+
+[source, ipython3]
+----
+print(a)
+print(b)
+print(c)
+print("this is ")
+----
+
+
++*Out[156]:*+
+----
+100
+200
+hello
+this is 
+----
+
+
++*In[160]:*+
+[source, ipython3]
+----
+import  myfirst
+----
+
+
++*In[161]:*+
+[source, ipython3]
+----
+print(dir())
+----
+
+
++*Out[161]:*+
+----
+['In', 'Out', '_', '__', '___', '__builtin__', '__builtins__', '__doc__', '__loader__', '__name__', '__package__', '__session__', '__spec__', '_dh', '_i', '_i1', '_i10', '_i100', '_i101', '_i102', '_i103', '_i104', '_i105', '_i106', '_i107', '_i108', '_i109', '_i11', '_i110', '_i111', '_i112', '_i113', '_i114', '_i115', '_i116', '_i117', '_i118', '_i119', '_i12', '_i120', '_i121', '_i122', '_i123', '_i124', '_i125', '_i126', '_i127', '_i128', '_i129', '_i13', '_i130', '_i131', '_i132', '_i133', '_i134', '_i135', '_i136', '_i137', '_i138', '_i139', '_i14', '_i140', '_i141', '_i142', '_i143', '_i144', '_i145', '_i146', '_i147', '_i148', '_i149', '_i15', '_i150', '_i151', '_i152', '_i153', '_i154', '_i155', '_i156', '_i157', '_i158', '_i159', '_i16', '_i160', '_i161', '_i17', '_i18', '_i19', '_i2', '_i20', '_i21', '_i22', '_i23', '_i24', '_i25', '_i26', '_i27', '_i28', '_i29', '_i3', '_i30', '_i31', '_i32', '_i33', '_i34', '_i35', '_i36', '_i37', '_i38', '_i39', '_i4', '_i40', '_i41', '_i42', '_i43', '_i44', '_i45', '_i46', '_i47', '_i48', '_i49', '_i5', '_i50', '_i51', '_i52', '_i53', '_i54', '_i55', '_i56', '_i57', '_i58', '_i59', '_i6', '_i60', '_i61', '_i62', '_i63', '_i64', '_i65', '_i66', '_i67', '_i68', '_i69', '_i7', '_i70', '_i71', '_i72', '_i73', '_i74', '_i75', '_i76', '_i77', '_i78', '_i79', '_i8', '_i80', '_i81', '_i82', '_i83', '_i84', '_i85', '_i86', '_i87', '_i88', '_i89', '_i9', '_i90', '_i91', '_i92', '_i93', '_i94', '_i95', '_i96', '_i97', '_i98', '_i99', '_ih', '_ii', '_iii', '_oh', 'a', 'b', 'c', 'ch', 'consonants', 'count', 'd', 'd1', 'd2', 'data', 'data1', 'e', 'exit', 'f', 'f1', 'f2', 'file', 'file1', 'file2', 'get_ipython', 'i', 'index', 'key', 'l', 'line', 'math', 'mx', 'myfirst', 'n', 'num_lines', 'open', 'quit', 's', 'space', 't', 'v', 'value', 'vowel', 'word', 'x', 'y', 'z']
+----
+
+
++*In[162]:*+
+[source, ipython3]
+----
+print(dir(myfirst))
+----
+
+
++*Out[162]:*+
+----
+['__builtins__', '__cached__', '__doc__', '__file__', '__loader__', '__name__', '__package__', '__spec__', 'a', 'b', 'c']
+----
+
+
++*In[163]:*+
+[source, ipython3]
+----
+import os
+----
+
+
++*In[164]:*+
+[source, ipython3]
+----
+print(os.listdir("."))
+----
+
+
++*Out[164]:*+
+----
+['.anaconda', '.bash_history', '.conda', '.condarc', '.continuum', '.ipynb_checkpoints', '.ipython', '.jupyter', '.vscode', 'abc.txt', 'anaconda3', 'AppData', 'Application Data', 'Contacts', 'Cookies', 'CrossDevice', 'database.txt', 'Django', 'Documents', 'Downloads', 'env', 'Favorites', 'file1.txt', 'file2.txt', 'FULLPYTHON.ipynb', 'Links', 'Local Settings', 'Music', 'My Documents', 'myfile.py', 'myfirst.py', 'myproject', 'myworld', 'NetHood', 'NTUSER.DAT', 'ntuser.dat.LOG1', 'ntuser.dat.LOG2', 'NTUSER.DAT{797afcec-7e1f-11f0-b65f-9cc7d351750d}.TM.blf', 'NTUSER.DAT{797afcec-7e1f-11f0-b65f-9cc7d351750d}.TMContainer00000000000000000001.regtrans-ms', 'NTUSER.DAT{797afcec-7e1f-11f0-b65f-9cc7d351750d}.TMContainer00000000000000000002.regtrans-ms', 'ntuser.ini', 'OneDrive', 'PrintHood', 'pythonLj.ipynb', 'Python_T2.ipynb', 'PYTHON_T3.ipynb', 'Recent', 'Saved Games', 'Searches', 'SendTo', 'Start Menu', 'stock_management', 'Templates', 'venv', 'Videos', 'xyz.txt', '__pycache__']
+----
+
+
++*In[165]:*+
+[source, ipython3]
+----
+import time
+----
+
+
++*In[167]:*+
+[source, ipython3]
+----
+print(time.asctime())
+----
+
+
++*Out[167]:*+
+----
+Tue Dec 16 14:28:36 2025
+----
+
+
++*In[168]:*+
+[source, ipython3]
+----
+import getpass
+----
+
+
++*In[169]:*+
+[source, ipython3]
+----
+password = getpass.getpass("Enter Password : ")
+if password == "LJENG":
+    print("welcome :")
+else:
+    print("get out")
+----
+
+
++*Out[169]:*+
+----
+Enter Password :  ········
+
+welcome :
+----
+
+== CH - 8
+
+
++*In[181]:*+
+[source, ipython3]
+----
+class Student:
+    def __init__(self,name,roll):
+        self.marks = []
+        self.name = name 
+        self.roll = roll
+    def enterM(self):
+        for i in range(3):
+            x = int(input(f"Enter {self.name} subject {i+1} marks: "))
+            self.marks.append(x)
+    def total(self):
+        y = self.marks[0] + self.marks[1] + self.marks[2]
+        return y
+    def display(self):
+        print(f"name : {self.name}\nRoll no : {self.roll}\nmarks : {self.marks}\nTotal marks : {self.total()}")
+----
+
+
++*In[182]:*+
+[source, ipython3]
+----
+s1 = Student("pranav",23)
+s1.enterM()
+s1.total()
+s1.display()
+----
+
+
++*Out[182]:*+
+----
+Enter pranav subject 1 marks:  12
+Enter pranav subject 2 marks:  13
+Enter pranav subject 3 marks:  14
+
+name : pranav
+Roll no : 23
+marks : [12, 13, 14]
+Total marks : 39
+----
+
+== Library management sysytem
+
+
++*In[191]:*+
+[source, ipython3]
+----
+class Library:
+    def __init__(self):
+        self.title = ""
+        self.author = ""
+        self.publisher = ""
+    def write(self):
+        self.title = input("Enter book title :")
+        self.author = input("Enter author name :")
+        self.publisher = input("Enter publisher name :")
+    def display(self):
+        print("Title :",self.title)
+        print("Author :",self.author)
+        print("Publisher :",self.publisher)
+        print("\n")
+my_list = []
+ch = "y"
+while (ch=="y"):
+    print("1 :- Add Book")
+    print("2 :- Display Book")
+    x = int(input("Enter : "))
+    if x==1:
+        book = Library()
+        book.write()
+        my_list.append(book)
+    elif x==2:
+        for i in my_list:
+            i.display()
+    else:
+        print("Enter valid Input")
+    ch = input("for Continue Enter y, or for exit Enter n")
+print("byyyy")
+----
+
+
++*Out[191]:*+
+----
+1 :- Add Book
+2 :- Display Book
+
+Enter :  1
+Enter book title : k
+Enter author name : k
+Enter publisher name : k
+for Continue Enter y, or for exit Enter n y
+
+1 :- Add Book
+2 :- Display Book
+
+Enter :  2
+
+Title : k
+Author : k
+Publisher : k
+
+
+
+for Continue Enter y, or for exit Enter n y
+
+1 :- Add Book
+2 :- Display Book
+
+Enter :  1
+Enter book title : a
+Enter author name : a
+Enter publisher name : a
+for Continue Enter y, or for exit Enter n y
+
+1 :- Add Book
+2 :- Display Book
+
+Enter :  2
+
+Title : k
+Author : k
+Publisher : k
+
+
+Title : a
+Author : a
+Publisher : a
+
+
+
+for Continue Enter y, or for exit Enter n ed
+
+byyyy
+----
+
+== Billing System
+
+
++*In[11]:*+
+[source, ipython3]
+----
+class Billing:
+    def __init__(self,n):
+        self.item_code = []
+        self.price = []
+        self.n = n
+    def add_item(self):
+        for i in range(self.n):
+            self.item_code.append(input(f"Enter item code {i+1} :"))
+            self.price.append(int(input(f"Enter item price {i+1} :")))
+    def display(self):
+        for i in range(self.n):
+            print(f"Item Code {i+1}:",self.item_code[i],end="\n")
+            print(f"Price {i+1}:",self.price[i])
+            print("\n")
+    def bill(self,que):
+        total = 0
+        for i in range(self.n):
+            print(f"price of item {i+1} with quantity {que[i]} :",self.price[i]*que[i])
+        for i in range(self.n):
+            total+=(self.price[i]*que[i])
+        print("The total bill is :",total)
+                                
+            
+x = int(input("Enter how many item you buy :"))
+b = Billing(x)
+b.add_item()
+b.display()
+q = []
+print("Enter quantity of items :")
+for i in range(x):
+    q.append(int(input(f"Enter Quantity of item {i+1}:")))
+b.bill(q)
+----
+
+
++*Out[11]:*+
+----
+Enter how many item you buy : 2
+Enter item code 1 : 001
+Enter item price 1 : 10
+Enter item code 2 : 002
+Enter item price 2 : 30
+
+Item Code 1: 001
+Price 1: 10
+
+
+Item Code 2: 002
+Price 2: 30
+
+
+Enter quantity of items :
+
+Enter Quantity of item 1: 2
+Enter Quantity of item 2: 3
+
+price of item 1 with quantity 2 : 20
+price of item 2 with quantity 3 : 90
+The total bill is : 110
+----
+
+== Bank System
+
+
++*In[14]:*+
+[source, ipython3]
+----
+class Bank:
+    def __init__(self,acc_no,name,balance):
+        self.acc_no = acc_no
+        self.name = name
+        self.balance = balance
+    def withdrawal(self,w):
+        if self.balance < w:
+            print("okat dekh apni")
+        else:
+            self.balance = self.balance-w
+            print("you withdrawal ",w)
+            print("curent balance is :",self.balance)
+    def diposit(self,d):
+        self.balance = self.balance + d
+        print("you diposit ",d)
+        print("curent balance is :",self.balance)
+    def display(self):
+        print("Account no :",self.acc_no)
+        print("Name :",self.name)
+        print("Balance :",self.balance)
+b = Bank(123456790,"Devil",2300)
+b.withdrawal(300)
+b.diposit(500)
+b.display()
+----
+
+
++*Out[14]:*+
+----
+you withdrawal  300
+curent balance is : 2000
+you diposit  500
+curent balance is : 2500
+Account no : 123456790
+Name : Devil
+Balance : 2500
+----
+
+
++*In[15]:*+
+[source, ipython3]
+----
+# perimeter := 2*pi*R
+# area := pi*R**2
+# test_belong (x-self.a)**2 + (y-self.b)**2 - self.r**2
+# chech (x,y) == 0 if yes so its belong to circle 
+----
+
+== flashcard
+
+
++*In[18]:*+
+[source, ipython3]
+----
+class flashcard:
+    def __init__(self,flash,mean):
+        self.flash = flash
+        self.mean = mean
+    def formula(self):
+        return self.flash+"( "+self.mean+" )"
+
+f = []
+ch = "y"
+while (ch=="y"):
+    print(": Welcome to flashcard :")
+    x = input("Enter short form :")
+    y = input("Enter full form ")
+    data = flashcard(x,y)
+    f.append(data.formula())
+    ch = input("Enter y for continue adding,hit any button for exit ")
+print("your flash is :")
+for i in f:
+    print(">",i)
+----
+
+
++*Out[18]:*+
+----
+: Welcome to flashcard :
+
+Enter short form : fsd
+Enter full form  full stack devlopment
+Enter y for continue adding,hit any button for exit  y
+
+: Welcome to flashcard :
+
+Enter short form : de
+Enter full form  devlopment electonuk
+Enter y for continue adding,hit any button for exit  python 
+
+your flash is :
+> fsd( full stack devlopment )
+> de( devlopment electonuk )
+----
+
+
++*In[4]:*+
+[source, ipython3]
+----
+L = ['hello\n','hi\n','how are you\n','I am fine']
+f = open("abc.txt",'w')
+f.writelines(L)
+f.close()
+----
+
+
++*In[6]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    print(file.read())
+----
+
+
++*Out[6]:*+
+----
+hello
+hi
+how are you
+I am fine
+----
+
+
++*In[14]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    print(file.readlines(1))
+    print(file.readlines(1))
+    print(file.readlines(1))
+----
+
+
++*Out[14]:*+
+----
+['hello\n']
+['hi\n']
+['how are you\n']
+----
+
+== search the word
+
+
++*In[16]:*+
+[source, ipython3]
+----
+with open("abc.txt") as file:
+    x = input("Enter word :")
+    data = file.readlines()
+    for row in data:
+        if row.find(x) != -1: # if this word not in file so its give -1 or in file so its give 1
+            print(data.index(row) , row.index(x))
+            print(row)
+        
+----
+
+
++*Out[16]:*+
+----
+Enter word : are
+
+2 4
+how are you
+
+----
+
+== use of dictionary
+
+
++*In[17]:*+
+[source, ipython3]
+----
+d = {}
+x = "apple"
+y = 1
+d[x] = y
+print(d)
+----
+
+
++*Out[17]:*+
+----
+{'apple': 1}
+----
+
+
++*In[20]:*+
+[source, ipython3]
+----
+try:
+    a = 5
+    print(a)
+    print(b)
+except:
+    print("hello")
+----
+
+
++*Out[20]:*+
+----
+5
+hello
+----
+
+== for capitalize first latter
+
+
++*In[21]:*+
+[source, ipython3]
+----
+x = "abcd"
+y = x.capitalize()
+print(y)
+----
+
+
++*Out[21]:*+
+----
+Abcd
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----
